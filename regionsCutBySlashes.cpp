@@ -49,39 +49,39 @@ private:
 };
 
 class Solution {
-public:
-    int regionsBySlashes(vector<string>& grid) {
-        int n = grid.size();
-        vector<vector<int>> pixelGrid(3 * n, vector<int>(3 * n, 0));
+    public:
+        int regionsBySlashes(vector<string>& grid) {
+            int n = grid.size();
+            vector<vector<int>> pixelGrid(3 * n, vector<int>(3 * n, 0));
 
-        for (int i = 0; i < n; ++i)
-            for (int j = 0; j < n; ++j)
-                if (grid[i][j] == '/') {
-                    pixelGrid[i * 3][j * 3 + 2] = 1;
-                    pixelGrid[i * 3 + 1][j * 3 + 1] = 1;
-                    pixelGrid[i * 3 + 2][j * 3] = 1;
-                } else if (grid[i][j] == '\\') {
-                    pixelGrid[i * 3][j * 3] = 1;
-                    pixelGrid[i * 3 + 1][j * 3 + 1] = 1;
-                    pixelGrid[i * 3 + 2][j * 3 + 2] = 1;
-                }
+            for (int i = 0; i < n; ++i)
+                for (int j = 0; j < n; ++j)
+                    if (grid[i][j] == '/') {
+                        pixelGrid[i * 3][j * 3 + 2] = 1;
+                        pixelGrid[i * 3 + 1][j * 3 + 1] = 1;
+                        pixelGrid[i * 3 + 2][j * 3] = 1;
+                    } else if (grid[i][j] == '\\') {
+                        pixelGrid[i * 3][j * 3] = 1;
+                        pixelGrid[i * 3 + 1][j * 3 + 1] = 1;
+                        pixelGrid[i * 3 + 2][j * 3 + 2] = 1;
+                    }
 
-        int regions = 0;
-        for (int i = 0; i < 3 * n; ++i)
-            for (int j = 0; j < 3 * n; ++j)
-                if (pixelGrid[i][j] == 0) {
-                    dfs(pixelGrid, i, j);
-                    regions++;
-                }
-        return regions;
-    }
+            int regions = 0;
+            for (int i = 0; i < 3 * n; ++i)
+                for (int j = 0; j < 3 * n; ++j)
+                    if (pixelGrid[i][j] == 0) {
+                        dfs(pixelGrid, i, j);
+                        regions++;
+                    }
+            return regions;
+        }
 
-    void dfs(vector<vector<int>>& grid, int i, int j) {
-        if (i < 0 || j < 0 || i >= grid.size() || j >= grid.size() || grid[i][j] == 1) return;
-        grid[i][j] = 1;
-        dfs(grid, i + 1, j); dfs(grid, i - 1, j);
-        dfs(grid, i, j + 1); dfs(grid, i, j - 1);
-    }
+        void dfs(vector<vector<int>>& grid, int i, int j) {
+            if (i < 0 || j < 0 || i >= grid.size() || j >= grid.size() || grid[i][j] == 1) return;
+            grid[i][j] = 1;
+            dfs(grid, i + 1, j); dfs(grid, i - 1, j);
+            dfs(grid, i, j + 1); dfs(grid, i, j - 1);
+        }
 };
 
 class Solution {
