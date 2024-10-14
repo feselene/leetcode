@@ -1,3 +1,5 @@
+package archive
+
 fun minSubarray(nums, p): Int {
     val totalSum = nums.sum()
     val targetRemainder = totalSum % p

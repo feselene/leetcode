@@ -1,3 +1,5 @@
+package archive;
+
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
         int minSize = Integer.MAX_VALUE;
